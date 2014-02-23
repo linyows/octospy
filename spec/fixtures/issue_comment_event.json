@@ -1,0 +1,97 @@
+{
+  "id": "1771641168",
+  "type": "IssueCommentEvent",
+  "actor": {
+    "id": 170270,
+    "login": "sindresorhus",
+    "gravatar_id": "d36a92237c75c5337c17b60d90686bf9",
+    "url": "https://api.github.com/users/sindresorhus",
+    "avatar_url": "https://secure.gravatar.com/avatar/d36a92237c75c5337c17b60d90686bf9?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
+  },
+  "repo": {
+    "id": 5710341,
+    "name": "bower/bower",
+    "url": "https://api.github.com/repos/bower/bower"
+  },
+  "payload": {
+    "action": "created",
+    "issue": {
+      "url": "https://api.github.com/repos/bower/bower/issues/582",
+      "labels_url": "https://api.github.com/repos/bower/bower/issues/582/labels{/name}",
+      "comments_url": "https://api.github.com/repos/bower/bower/issues/582/comments",
+      "events_url": "https://api.github.com/repos/bower/bower/issues/582/events",
+      "html_url": "https://github.com/bower/bower/issues/582",
+      "id": 16296959,
+      "number": 582,
+      "title": "Remove `engines` from package.json.",
+      "user": {
+        "login": "paulmillr",
+        "id": 574696,
+        "avatar_url": "https://secure.gravatar.com/avatar/d342e4ef045c54a6a6f41d070d8a0406?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
+        "gravatar_id": "d342e4ef045c54a6a6f41d070d8a0406",
+        "url": "https://api.github.com/users/paulmillr",
+        "html_url": "https://github.com/paulmillr",
+        "followers_url": "https://api.github.com/users/paulmillr/followers",
+        "following_url": "https://api.github.com/users/paulmillr/following{/other_user}",
+        "gists_url": "https://api.github.com/users/paulmillr/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/paulmillr/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/paulmillr/subscriptions",
+        "organizations_url": "https://api.github.com/users/paulmillr/orgs",
+        "repos_url": "https://api.github.com/users/paulmillr/repos",
+        "events_url": "https://api.github.com/users/paulmillr/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/paulmillr/received_events",
+        "type": "User"
+      },
+      "labels": [],
+      "state": "open",
+      "assignee": null,
+      "milestone": null,
+      "comments": 3,
+      "created_at": "2013-07-03T01:08:12Z",
+      "updated_at": "2013-07-03T13:49:56Z",
+      "closed_at": null,
+      "pull_request": {
+        "html_url": "https://github.com/bower/bower/pull/582",
+        "diff_url": "https://github.com/bower/bower/pull/582.diff",
+        "patch_url": "https://github.com/bower/bower/pull/582.patch"
+      },
+      "body": "It was removed recently."
+    },
+    "comment": {
+      "url": "https://api.github.com/repos/bower/bower/issues/comments/20416296",
+      "html_url": "https://github.com/bower/bower/issues/582#issuecomment-20416296",
+      "issue_url": "https://api.github.com/repos/bower/bower/issues/582",
+      "id": 20416296,
+      "user": {
+        "login": "sindresorhus",
+        "id": 170270,
+        "avatar_url": "https://secure.gravatar.com/avatar/d36a92237c75c5337c17b60d90686bf9?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
+        "gravatar_id": "d36a92237c75c5337c17b60d90686bf9",
+        "url": "https://api.github.com/users/sindresorhus",
+        "html_url": "https://github.com/sindresorhus",
+        "followers_url": "https://api.github.com/users/sindresorhus/followers",
+        "following_url": "https://api.github.com/users/sindresorhus/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sindresorhus/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sindresorhus/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sindresorhus/subscriptions",
+        "organizations_url": "https://api.github.com/users/sindresorhus/orgs",
+        "repos_url": "https://api.github.com/users/sindresorhus/repos",
+        "events_url": "https://api.github.com/users/sindresorhus/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sindresorhus/received_events",
+        "type": "User"
+      },
+      "created_at": "2013-07-03T13:49:56Z",
+      "updated_at": "2013-07-03T13:49:56Z",
+      "body": "Has is ever done anything? It still has a purpose though; To warn users that they're using an outdated version."
+    }
+  },
+  "public": true,
+  "created_at": "2013-07-03T13:49:57Z",
+  "org": {
+    "id": 3709251,
+    "login": "bower",
+    "gravatar_id": "86d39e0cee6de67985ce671dbe6044d1",
+    "url": "https://api.github.com/orgs/bower",
+    "avatar_url": "https://secure.gravatar.com/avatar/86d39e0cee6de67985ce671dbe6044d1?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png"
+  }
+}

@@ -1,0 +1,23 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+
+before_install:
+  - gem update bundler
+
+script:
+  - bundle exec rake spec
+
+notifications:
+  email:
+    recipients:
+    - linyows@gmail.com
+    on_success: change
+    on_failure: always
+  irc:
+    on_success: change
+    on_failure: always
+    channels:
+      - "irc.freenode.org#linyows"
