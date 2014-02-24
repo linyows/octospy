@@ -42,7 +42,18 @@ $ gem install octospy
 Usage
 -----
 
-TODO: Write usage instructions here
+edit `.env`:
+
+```sh
+SERVER=irc.yourserver.net
+CHANNELS=yourchannel
+GITHUB_LOGIN=yourusername
+GITHUB_TOKEN=e17e1c6caa3e452433ab55****************
+```
+
+```sh
+$ octospy
+```
 
 Contributing
 ------------
