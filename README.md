@@ -13,7 +13,7 @@ Octospy
 [codeclimate]: https://codeclimate.com/github/linyows/octospy
 [coveralls]: https://coveralls.io/r/linyows/octospy
 
-Octospy notifies the repository activity to an IRC channel.
+Octospy notifies the repository activity to some IRC channels.
 
 <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" width="300">
 <img src="http://octodex.github.com/images/daftpunktocat-guy.gif" width="300">
@@ -23,15 +23,21 @@ Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'octospy'
+```ruby
+gem 'octospy'
+```
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install octospy
+```sh
+$ gem install octospy
+```
 
 Usage
 -----
@@ -47,12 +53,12 @@ Contributing
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-Author
-------
+Authors
+-------
 
 - [linyows](https://github.com/linyows)
 
 License
 -------
 
-MIT
+The MIT License (MIT)
