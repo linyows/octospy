@@ -44,6 +44,10 @@ $ gem install octospy
 Usage
 -----
 
+```sh
+$ mv .emv.example .env
+```
+
 edit `.env`:
 
 ```sh
@@ -52,6 +56,8 @@ CHANNELS=yourchannel
 GITHUB_LOGIN=yourusername
 GITHUB_TOKEN=e17e1c6caa3e452433ab55****************
 ```
+
+github tokens: https://github.com/settings/applications
 
 ```sh
 $ octospy
