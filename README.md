@@ -45,7 +45,7 @@ Usage
 -----
 
 ```sh
-$ mv .emv.example .env
+$ cp .emv.example .env
 ```
 
 edit `.env`:
