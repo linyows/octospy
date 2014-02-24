@@ -63,6 +63,15 @@ github tokens: https://github.com/settings/applications
 $ octospy
 ```
 
+### GitHub Enterprise
+
+add to `.env`
+
+```sh
+GITHUB_API_ENDPOINT=http://your.enterprise.domain/api/v3
+GITHUB_WEB_ENDPOINT=http://your.enterprise.domain
+```
+
 Commands
 --------
 
