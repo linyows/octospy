@@ -15,8 +15,10 @@ Octospy
 
 Octospy notifies the repository activity to some IRC channels.
 
+<div align="center">
 <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" width="300">
 <img src="http://octodex.github.com/images/daftpunktocat-guy.gif" width="300">
+</div>
 
 Installation
 ------------
