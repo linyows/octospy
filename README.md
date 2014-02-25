@@ -82,7 +82,7 @@ Command                          | Description
 `watch <repository>`             | add repository to watch list (ex: watch rails/rails)
 `unwatch <repository>`           | remove repository to watch list
 `watch <user or organization>`   | add user's repositories to watch list (ex: watch dotcloud)
-`unwatch <user or organization>` | remove user's repositories to watch list(ex: watch dotcloud)
+`unwatch <user or organization>` | remove user's repositories to watch list
 `job start`                      | start the repository event monitoring
 `job stop`                       | stop the repository event monitoring
 `join <channel>`                 | invite octospy to another channel
