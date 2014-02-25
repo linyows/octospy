@@ -49,7 +49,7 @@ module Cinch
         end
 
         def start(m)
-          repos = ::Octospy.channel(m.channel.name).repos
+          repos = ::Octospy::Recordable.channel(m.channel.name).repos
           channel = m.channel
 
           worker = ::Octospy.worker(repos) do |message|

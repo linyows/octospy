@@ -20,8 +20,8 @@ module Cinch
             return
           end
 
-          ::Octospy.add_channel m.channel.name
-          ::Octospy.channel(m.channel.name).add_repo(repo)
+          ::Octospy::Recordable.add_channel m.channel.name
+          ::Octospy::Recordable.channel(m.channel.name).add_repo(repo)
 
           restart(m)
           m.reply "I started to watch the #{repo} events"
@@ -35,10 +35,10 @@ module Cinch
             return
           end
 
-          ::Octospy.add_channel m.channel.name
+          ::Octospy::Recordable.add_channel m.channel.name
           method = "#{'org_' if user.type == 'Organization'}repos".to_sym
           repos = ::Octokit.send(method, owner).map { |repo|
-            ::Octospy.channel(m.channel.name).add_repo(repo.full_name)
+            ::Octospy::Recordable.channel(m.channel.name).add_repo(repo.full_name)
             repo.full_name
           }
 
@@ -56,21 +56,21 @@ module Cinch
             return
           end
 
-          ::Octospy.channel(m.channel.name).remove_repo(repo)
+          ::Octospy::Recordable.channel(m.channel.name).remove_repo(repo)
 
           restart(m)
           m.reply "I stopped to watch the #{repo} events"
         end
 
         def unwatch_repositories(m, owner)
-          repos = ::Octospy.channel(m.channel.name).repos.each_with_object([]) do |repo, obj|
+          repos = ::Octospy::Recordable.channel(m.channel.name).repos.each_with_object([]) do |repo, obj|
             next unless repo.split('/').first == owner
-            ::Octospy.channel(m.channel.name).remove_repo(repo)
+            ::Octospy::Recordable.channel(m.channel.name).remove_repo(repo)
             opj << repo
           end
 
           if repos.count > 0
-            if ::Octospy.channel(m.channel.name).repos.count > 0
+            if ::Octospy::Recordable.channel(m.channel.name).repos.count > 0
               m.reply "stopped to watch events of #{repos.count} repositories"
               restart(m)
             else
@@ -84,7 +84,7 @@ module Cinch
         end
 
         def show_watched_repositories(m)
-          channel = ::Octospy.channel(m.channel.name)
+          channel = ::Octospy::Recordable.channel(m.channel.name)
 
           if channel.nil? || channel.repos.nil? || !channel.repos
             m.reply 'nothing!'

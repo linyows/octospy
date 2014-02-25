@@ -1,8 +1,8 @@
-require 'octospy/recordable/repo'
-
 module Octospy
   module Recordable
     class Channel
+      attr_reader :name
+
       def initialize(name)
         @name = name.to_sym
       end

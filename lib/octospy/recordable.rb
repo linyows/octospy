@@ -1,25 +1,34 @@
 require 'octospy/recordable/channel'
-require 'octospy/recordable/repo'
 
 module Octospy
   module Recordable
-    def channels
-      @channels ||= {}
-    end
+    class << self
+      def channels
+        @channels ||= []
+      end
 
-    def add_channel(name)
-      @channels.merge!(:"#{name}" => Channel.new(name)) unless channels.has_key?(name.to_sym)
-    end
+      def channels_include?(name)
+        !!find_channel(name)
+      end
 
-    def del_channel(name)
-      @channels.delete(name.to_sym) if channels.has_key?(name)
-    end
+      def find_channel(name)
+        channels.find { |channel| channel.name.to_s == name.to_s }
+      end
 
-    def channel(name)
-      if channels.has_key?(name.to_sym)
-        @channels[name.to_sym]
-      else
-        Channel.new(name)
+      def add_channel(name)
+        channels << Channel.new(name) unless channels_include? name
+      end
+
+      def del_channel(name)
+        channels.delete_if { |channel| channel.name.to_s == name.to_s }
+      end
+
+      def channel(name)
+        if channels_include? name
+          find_channel name
+        else
+          Channel.new(name)
+        end
       end
     end
   end

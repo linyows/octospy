@@ -14,7 +14,6 @@ require 'octospy/octokit/client'
 module Octospy
   class << self
     include Octospy::Configurable
-    include Octospy::Recordable
 
     def parse(event)
       Octospy::Parser.new(event).parse
