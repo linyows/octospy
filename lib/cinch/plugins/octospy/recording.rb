@@ -4,10 +4,10 @@ module Cinch
       module Recording
         def self.included(base)
           base.class_eval do
-            match(/watch ([\w\-\.]+)\/([\w\-\.]+)/, method: :watch_repository)
-            match(/unwatch ([\w\-\.]+)\/([\w\-\.]+)/, method: :unwatch_repository)
-            match(/watch ([\w\-\.]+)/, method: :watch_repositories)
-            match(/unwatch ([\w\-\.]+)/, method: :unwatch_repositories)
+            match(/watch ([\w\-\.]+)\/([\w\-\.]+)$/, method: :watch_repository)
+            match(/unwatch ([\w\-\.]+)\/([\w\-\.]+)$/, method: :unwatch_repository)
+            match(/watch ([\w\-\.]+)$/, method: :watch_repositories)
+            match(/unwatch ([\w\-\.]+)$/, method: :unwatch_repositories)
             match(/show watched( repos(itories)?)?/, method: :show_watched_repositories)
           end
         end
@@ -86,7 +86,7 @@ module Cinch
         def show_watched_repositories(m)
           channel = ::Octospy::Recordable.channel(m.channel.name)
 
-          if channel.nil? || channel.repos.nil? || !channel.repos
+          if channel.nil? || channel.repos.nil? || channel.repos.empty?
             m.reply 'nothing!'
             return
           end
