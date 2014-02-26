@@ -3,7 +3,11 @@ module Octospy
     OPTIONS_KEYS = %i(
         channels
         server
+        port
+        ssl
+        password
         nick
+        cinch_config_block
         github_api_endpoint
         github_web_endpoint
         github_login
@@ -18,12 +22,12 @@ module Octospy
       end
     end
 
-    DEFAULT_GITHUB_API_ENDPOINT = ENV['GITHUB_API_ENDPOINT'] || 'https://api.github.com'
-    DEFAULT_GITHUB_WEB_ENDPOINT = ENV['GITHUB_WEB_ENDPOINT'] || 'https://github.com'
-    DEFAULT_NICK = ENV['NICK'] || 'octospy'
-
     def configure
       yield self
+    end
+
+    def cinch_config_block(&block)
+      @cinch_config_block = block
     end
 
     def options
@@ -33,17 +37,18 @@ module Octospy
     end
 
     def setup
-      @github_api_endpoint = DEFAULT_GITHUB_API_ENDPOINT
-      @github_web_endpoint = DEFAULT_GITHUB_WEB_ENDPOINT
-      @nick = DEFAULT_NICK
-      @channels = if ENV['CHANNELS']
-          ENV['CHANNELS'].gsub(/\s|#/, '').split(',').map { |ch| "##{ch}" }
-        else
-          ''
-        end
-      @server = ENV['SERVER']
-      @github_login = ENV['GITHUB_LOGIN']
-      @github_token = ENV['GITHUB_TOKEN']
+      @github_api_endpoint = ENV['GITHUB_API_ENDPOINT']
+      @github_web_endpoint = ENV['GITHUB_WEB_ENDPOINT']
+      @nick                = ENV['NICK'] || 'octospy'
+      @server              = ENV['SERVER']
+      @port                = ENV['PORT']
+      @ssl                 = !!ENV['SSL']
+      @password            = ENV['PASSWORD']
+      @github_login        = ENV['GITHUB_LOGIN']
+      @github_token        = ENV['GITHUB_TOKEN']
+      @channels            = ENV['CHANNELS'] ?
+        ENV['CHANNELS'].gsub(/\s|#/, '').split(',').map { |ch| "##{ch}" } : nil
+      @cinch_config_block  = nil
     end
   end
 end
