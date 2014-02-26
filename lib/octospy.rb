@@ -25,17 +25,20 @@ module Octospy
 
     def irc_bot
       Octokit.configure do |c|
-        c.api_endpoint = Octospy.github_api_endpoint
-        c.web_endpoint = Octospy.github_web_endpoint
-        c.login = Octospy.github_login
+        c.api_endpoint = Octospy.github_api_endpoint if Octospy.github_api_endpoint
+        c.web_endpoint = Octospy.github_web_endpoint if Octospy.github_web_endpoint
+        c.login        = Octospy.github_login
         c.access_token = Octospy.github_token
       end
 
       Cinch::Bot.new do
         configure do |c|
-          c.server = Octospy.server
-          c.nick = Octospy.nick
-          c.channels = Octospy.channels
+          c.server          = Octospy.server
+          c.nick            = Octospy.nick
+          c.channels        = Octospy.channels
+          c.port            = Octospy.port if Octospy.port
+          c.password        = Octospy.password if Octospy.password
+          c.ssl.use         = Octospy.ssl if Octospy.ssl
           c.plugins.plugins = [
             Cinch::Plugins::Management,
             Cinch::Plugins::Octospy
