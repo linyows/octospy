@@ -29,13 +29,18 @@ module Octospy
       end
     end
 
+    def while_ago
+      Time.now.utc - (60 * 30)
+    end
+
     def watch_repositories
       # ascending by event.id
       events.sort_by(&:id).each { |event|
-        if @last_event_id.nil?
-          next if Time.now.utc - (60*60) >= event.created_at
-        else
-          next if @last_event_id >= event.id.id
+        case
+        when @last_event_id.nil? && while_ago >= event.created_at
+          next
+        when !@last_event_id.nil? && @last_event_id >= event.id.to_i
+          next
         end
 
         parsed_event = Octospy.parse(event)
