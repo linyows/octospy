@@ -35,13 +35,13 @@ module Octospy
         if @last_event_id.nil?
           next if Time.now.utc - (60*60) >= event.created_at
         else
-          next if @last_event_id >= event.id
+          next if @last_event_id >= event.id.id
         end
 
         parsed_event = Octospy.parse(event)
         next unless parsed_event
 
-        @last_event_id = event.id
+        @last_event_id = event.id.to_i
         parsed_event.each { |p| @block.call p[:message] }
       }
     end
