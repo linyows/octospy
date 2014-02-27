@@ -14,10 +14,10 @@ module Octospy
         loop do
           begin
             watch_repositories
-            sleep 30
+            sleep Octospy.worker_interval
           rescue => e
-            puts e.message
-            sleep 30
+            @block.call e.message
+            sleep Octospy.worker_interval
           end
         end
       end

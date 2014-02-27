@@ -7,6 +7,7 @@ module Octospy
         ssl
         password
         nick
+        worker_interval
         cinch_config_block
         github_api_endpoint
         github_web_endpoint
@@ -44,6 +45,7 @@ module Octospy
       @port                = ENV['PORT']
       @ssl                 = !!ENV['SSL']
       @password            = ENV['PASSWORD']
+      @worker_interval     = ENV['WORKER_INTERVAL'] || 30 #sec
       @github_login        = ENV['GITHUB_LOGIN']
       @github_token        = ENV['GITHUB_TOKEN']
       @channels            = ENV['CHANNELS'] ?
