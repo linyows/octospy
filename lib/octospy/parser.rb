@@ -7,6 +7,7 @@ require 'octospy/parser/pull_request'
 require 'octospy/parser/wiki'
 require 'octospy/parser/download'
 require 'octospy/parser/gist'
+require 'octospy/parser/release'
 
 module Octospy
   class Parser
@@ -18,6 +19,7 @@ module Octospy
     include Wiki
     include Download
     include Gist
+    include Release
 
     def initialize(event)
       @event = event
@@ -99,7 +101,8 @@ module Octospy
         edited: :green,
         published: :blue,
         started: :rainbow,
-        followed: :seven_eleven
+        followed: :seven_eleven,
+        saved: :cyan
       }
     end
 
