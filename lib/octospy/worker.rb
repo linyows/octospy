@@ -30,7 +30,8 @@ module Octospy
     end
 
     def watch_repositories
-      events.sort_by(&:id).reverse_each { |event|
+      # ascending by event.id
+      events.sort_by(&:id).each { |event|
         if @last_event_id.nil?
           next if Time.now.utc - (60*60) >= event.created_at
         else
