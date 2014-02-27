@@ -6,7 +6,7 @@ module Octospy
           status: "#{@event.payload.action} pull request ##{@event.payload.number}",
           title: @event.payload.pull_request.title,
           body: "#{@event.payload.pull_request.body}".split_lfbl,
-          link: @event.payload.pull_request.html_url
+          link: @event.payload.pull_request._links.html.attrs[:href]
         }
       end
 

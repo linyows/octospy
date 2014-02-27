@@ -18,7 +18,7 @@ module Octospy
           status: "#{@event.payload.action} issue ##{@event.payload.issue.number}",
           title: @event.payload.issue.title,
           body: body,
-          link: @event.payload.issue.html_url
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}/issues/#{@event.payload.issue.number}"
         }
       end
 
@@ -35,7 +35,7 @@ module Octospy
           status: status,
           title: title,
           body: "#{@event.payload.comment.body}".split_lfbl,
-          link: @event.payload.comment.html_url
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}/issues/#{@event.payload.issue.number}#issuecomment-#{@event.payload.comment.id}"
         }
       end
     end
