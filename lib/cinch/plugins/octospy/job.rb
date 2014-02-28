@@ -21,6 +21,13 @@ module Cinch
         end
 
         def start_with_message(m)
+          channel = ::Octospy::Recordable.channel(m.channel.name)
+
+          if channel.nil? || channel.repos.nil? || channel.repos.empty?
+            m.reply 'no repository watched'
+            return
+          end
+
           if m.channel.job_thread_alive?
             m.reply 'already started'
             return
