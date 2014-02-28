@@ -24,7 +24,7 @@ module Cinch
           ::Octospy::Recordable.channel(m.channel.name).add_repo(repo)
 
           restart(m)
-          m.reply "I started to watch the #{repo} events"
+          m.reply "started to watch the #{repo} events"
         end
 
         def watch_repositories(m, owner)
@@ -43,7 +43,7 @@ module Cinch
           }
 
           if repos.count > 0
-            m.reply "I started to watch events of #{repos.count} repositories"
+            m.reply "started to watch events of #{repos.count} repositories"
             restart(m)
           end
         end
@@ -52,14 +52,14 @@ module Cinch
           repo = "#{owner}/#{project}"
 
           unless ::Octokit.repository?(repo)
-            m.reply "Sorry, '#{repo}' not found"
+            m.reply "sorry, '#{repo}' not found"
             return
           end
 
           ::Octospy::Recordable.channel(m.channel.name).remove_repo(repo)
 
           restart(m)
-          m.reply "I stopped to watch the #{repo} events"
+          m.reply "stopped to watch the #{repo} events"
         end
 
         def unwatch_repositories(m, owner)
@@ -87,7 +87,7 @@ module Cinch
           channel = ::Octospy::Recordable.channel(m.channel.name)
 
           if channel.nil? || channel.repos.nil? || channel.repos.empty?
-            m.reply 'nothing!'
+            m.reply 'nothing'
             return
           end
 

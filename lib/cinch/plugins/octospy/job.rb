@@ -22,29 +22,29 @@ module Cinch
 
         def start_with_message(m)
           if m.channel.job_thread_alive?
-            m.reply 'I have already started'
+            m.reply 'already started'
             return
           end
 
           start(m)
-          m.reply 'I started'
+          m.reply 'started'
         end
 
         def stop_with_message(m)
           unless m.channel.job_thread_alive?
-            m.reply 'I have not started'
+            m.reply 'not started'
             return
           end
 
           stop(m)
-          m.reply 'I stopped'
+          m.reply 'stopped'
         end
 
         def restart_with_message(m)
           if restart(m)
-            m.reply 'I restarted'
+            m.reply 'restarted'
           else
-            m.reply 'I have not started'
+            m.reply 'not started'
           end
         end
 
