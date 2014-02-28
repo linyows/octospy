@@ -16,7 +16,7 @@ module Octospy
             watch_repositories
             sleep Octospy.worker_interval
           rescue => e
-            @block.call e.message
+            @block.call "Octospy Error: #{e.message}"
             sleep Octospy.worker_interval
           end
         end
