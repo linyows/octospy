@@ -19,7 +19,7 @@ module Octospy
         channels << Channel.new(name) unless channels_include? name
       end
 
-      def del_channel(name)
+      def remove_channel(name)
         channels.delete_if { |channel| channel.name.to_s == name.to_s }
       end
 

@@ -15,7 +15,7 @@ module Octospy
         @repos << name if repos.empty? || !repos.include?(name)
       end
 
-      def del_repo(name)
+      def remove_repo(name)
         @repos.delete(name.to_sym) if !repos.empty? && repos.include?(name)
       end
     end
