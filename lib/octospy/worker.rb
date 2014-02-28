@@ -25,6 +25,11 @@ module Octospy
 
     def events
       @repositories.each_with_object([]) do |repo, arr|
+        if Octokit.rate_limit.remaining.zero?
+          @block.call "ヾ(;´Д`)ﾉ #{::Octokit.rate_limit}"
+          break
+        end
+
         arr.concat ::Octokit.repository_events(repo)
       end
     end
