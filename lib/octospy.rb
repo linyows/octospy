@@ -52,6 +52,6 @@ module Octospy
     end
   end
 
-  Dotenv.load
+  Dotenv.load ENV['DOTENV'] || '.env'
   Octospy.setup
 end
