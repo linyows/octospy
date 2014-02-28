@@ -14,7 +14,7 @@ module Octospy
         {
           status: "#{@event.payload.action} member",
           title: user.login,
-          link: "#{Octokit.web_endpoint}/#{user.login}"
+          link: "#{Octokit.web_endpoint}#{user.login}"
         }
       end
     end

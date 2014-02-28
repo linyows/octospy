@@ -15,7 +15,7 @@ module Octospy
         @event.payload.commits.each do |commit|
           verbose_commit = Octokit.commit(@event.repo.name, commit.sha)
           name = "#{verbose_commit.author ? verbose_commit.author.login : commit.author.name}"
-          link = "#{Octokit.web_endpoint}/#{@event.repo.name}/commit/#{commit.sha}"
+          link = "#{Octokit.web_endpoint}#{@event.repo.name}/commit/#{commit.sha}"
           line = "#{name.colorize_for_irc.silver}: #{commit.message}"
           line << " - #{link.shorten.colorize_for_irc.blue}"
           body = body + "#{line}".split_lfbl
@@ -24,7 +24,7 @@ module Octospy
         {
           status: "pushed to #{@event.payload.ref.gsub('refs/heads/', '')}",
           body: body,
-          link: "#{Octokit.web_endpoint}/#{@event.repo.name}",
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}",
           notice_body: true
         }
       end
@@ -36,14 +36,14 @@ module Octospy
           {
             status: "created repository",
             title: title,
-            link: "#{Octokit.web_endpoint}/#{@event.repo.name}",
+            link: "#{Octokit.web_endpoint}#{@event.repo.name}",
             repository: nil
           }
         else
           {
             status: "created #{@event.payload.ref_type}:#{@event.payload.ref}",
             title: @event.payload.description,
-            link: "#{Octokit.web_endpoint}/#{@event.repo.name}"
+            link: "#{Octokit.web_endpoint}#{@event.repo.name}"
           }
         end
       end
@@ -51,7 +51,7 @@ module Octospy
       def parse_delete_event
         {
           status: "deleted #{@event.payload.ref_type}:#{@event.payload.ref}",
-          link: "#{Octokit.web_endpoint}/#{@event.repo.name}"
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}"
         }
       end
 
@@ -68,7 +68,7 @@ module Octospy
       def parse_public_event
         {
           status: "published #{@event.repo.name}",
-          link: "#{Octokit.web_endpoint}/#{@event.repo.name}"
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}"
         }
       end
 

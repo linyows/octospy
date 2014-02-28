@@ -5,7 +5,7 @@ module Octospy
         {
           status: "#{@event.payload.action} repository",
           title: @event.repo.name,
-          link: "#{Octokit.web_endpoint}/#{@event.repo.name}",
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}",
           repository: nil
         }
       end
@@ -27,7 +27,7 @@ module Octospy
           status: "followed",
           title: title,
           body: profile.join(', '),
-          link: "#{Octokit.web_endpoint}/#{user.login}",
+          link: "#{Octokit.web_endpoint}#{user.login}",
           repository: nil,
           notice: true
         }
