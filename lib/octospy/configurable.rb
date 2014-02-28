@@ -45,7 +45,8 @@ module Octospy
       @port                = ENV['PORT']
       @ssl                 = !!ENV['SSL']
       @password            = ENV['PASSWORD']
-      @worker_interval     = ENV['WORKER_INTERVAL'] || 30 #sec
+      @worker_interval     = ENV['WORKER_INTERVAL'] ?
+        ENV['WORKER_INTERVAL'].to_i : 30 #sec
       @github_login        = ENV['GITHUB_LOGIN']
       @github_token        = ENV['GITHUB_TOKEN']
       @channels            = ENV['CHANNELS'] ?
