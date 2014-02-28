@@ -81,6 +81,7 @@ module Cinch
         end
 
         def unwatch_all(m)
+          ::Octospy::Recordable.remove_channel(m.channel.name)
         end
 
         def show_watched_repositories(m)
