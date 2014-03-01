@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Octospy::VERSION
   spec.authors       = ['linyows']
   spec.email         = ['linyows@gmail.com']
-  spec.description   = %q{Octospy notifies eventsf github repositories to IRC channels.}
-  spec.summary       = %q{Octospy notifies eventsf github repositories to IRC channels.}
+  spec.description   = %q{Octospy notifies events of github repositories to IRC channels.}
+  spec.summary       = %q{Octospy notifies events of github repositories to IRC channels.}
   spec.homepage      = 'https://github.com/linyows/octospy'
   spec.license       = 'MIT'
 

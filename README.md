@@ -13,7 +13,7 @@ Octospy
 [codeclimate]: https://codeclimate.com/github/linyows/octospy
 [coveralls]: https://coveralls.io/r/linyows/octospy
 
-Octospy notifies eventsf github repositories to IRC channels.
+Octospy notifies events of github repositories to IRC channels.
 
 <div align="center">
 <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" width="300">
