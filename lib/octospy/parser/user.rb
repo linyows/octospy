@@ -2,11 +2,18 @@ module Octospy
   class Parser
     module User
       def parse_watch_event
+        # This is not watch event, this is star event
+        # {
+        #   status: "#{@event.payload.action} to watch",
+        #   title: nil,
+        #   link: "#{Octokit.web_endpoint}#{@event.repo.name}/watchers",
+        #   repository: @event.repo.name
+        # }
         {
-          status: "#{@event.payload.action} repository",
-          title: @event.repo.name,
-          link: "#{Octokit.web_endpoint}#{@event.repo.name}",
-          repository: nil
+          status: 'starred',
+          title: nil,
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}/stargazers",
+          repository: @event.repo.name
         }
       end
 

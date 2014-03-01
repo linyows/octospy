@@ -100,7 +100,7 @@ module Octospy
         deleted: :red,
         edited: :green,
         published: :blue,
-        started: :rainbow,
+        starred: :rainbow,
         followed: :seven_eleven,
         saved: :cyan
       }
