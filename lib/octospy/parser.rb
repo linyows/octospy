@@ -95,7 +95,7 @@ module Octospy
         created: :pink,
         commented: :yellow,
         pushed: :lime,
-        forked: :orange,
+        forked: :seven_eleven,
         closed: :brown,
         deleted: :red,
         edited: :green,
