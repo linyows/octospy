@@ -28,7 +28,6 @@ module Octospy
     def default_params
       {
         notice_body: false,
-        none_repository: false,
         nick: '',
         repository: '',
         status: '',

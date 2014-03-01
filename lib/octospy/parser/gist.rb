@@ -12,7 +12,7 @@ module Octospy
           status: "#{@event.payload.action}d gist",
           title: title,
           link: @event.payload.gist.html_url,
-          none_repository: true
+          repository: nil
         }
       end
     end
