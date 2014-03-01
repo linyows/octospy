@@ -2,16 +2,20 @@ module Octospy
   class Parser
     module Repository
       def parse_commit_comment_event
+        commit_url = "#{Octokit.web_endpoint}#{@event.repo.name}/commit/#{@event.payload.comment.commit_id}"
+
         {
           status: "commented on commit",
           title: "#{@event.payload.comment.path}",
           body: "#{@event.payload.comment.body}".split_lfbl,
-          link: @event.payload.comment.html_url
+          link: "#{commit_url}#commitcomment-#{@event.payload.comment.id}"
         }
       end
 
       def parse_push_event
         body = []
+        branch = @event.payload.ref.gsub('refs/heads/', '')
+
         @event.payload.commits.each do |commit|
           verbose_commit = Octokit.commit(@event.repo.name, commit.sha)
           name = "#{verbose_commit.author ? verbose_commit.author.login : commit.author.name}"
@@ -22,9 +26,9 @@ module Octospy
         end
 
         {
-          status: "pushed to #{@event.payload.ref.gsub('refs/heads/', '')}",
+          status: "pushed to #{branch}",
           body: body,
-          link: "#{Octokit.web_endpoint}#{@event.repo.name}",
+          link: "#{Octokit.web_endpoint}#{@event.repo.name}/tree/#{branch}",
           notice_body: true
         }
       end
@@ -59,9 +63,9 @@ module Octospy
         forkee_name = @event.payload.forkee.full_name
         forkee_lang = @event.payload.forkee.language
         {
-          status: "forked #{forkee_name} [#{forkee_lang}]",
-          title: @event.payload.forkee.description,
-          link: @event.payload.forkee.html_url
+          status: "forked to #{forkee_name}",
+          title: "#{forkee_lang}: #{@event.payload.forkee.description}",
+          link: "#{Octokit.web_endpoint}#{@event.payload.forkee.full_name}"
         }
       end
 
