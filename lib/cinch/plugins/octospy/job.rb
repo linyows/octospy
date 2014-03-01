@@ -6,9 +6,9 @@ module Cinch
       module Job
         def self.included(base)
           base.class_eval do
-            match('job start', method: :start_with_message)
-            match('job stop', method: :stop_with_message)
-            match('job restart', method: :restart_with_message)
+            match('start', method: :start_with_message)
+            match('stop', method: :stop_with_message)
+            match('restart', method: :restart_with_message)
           end
 
           Channel.class_eval do
