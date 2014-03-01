@@ -30,6 +30,7 @@ module Octospy
           break
         end
 
+        sleep Octospy.api_request_interval
         arr.concat ::Octokit.repository_events(repo)
       end
     end
