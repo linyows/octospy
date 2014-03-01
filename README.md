@@ -71,6 +71,12 @@ GITHUB_API_ENDPOINT=http://your.enterprise.domain/api/v3
 GITHUB_WEB_ENDPOINT=http://your.enterprise.domain
 ```
 
+### Specify the dotenv filename
+
+```sh
+env DOTENV=".env.myserver" octospy
+```
+
 Commands
 --------
 
