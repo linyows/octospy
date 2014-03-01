@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'cinch', '~> 2.0'
   spec.add_dependency 'octokit', '~> 2.7'
   spec.add_dependency 'string-irc', '~> 0.3'
-  spec.add_dependency 'faraday', '~> 0.8.9'
-  spec.add_dependency 'faraday_middleware', '~> 0.9'
+  spec.add_dependency 'sawyer', '~> 0.5'
   spec.add_dependency 'dotenv', '~> 0.10'
 end

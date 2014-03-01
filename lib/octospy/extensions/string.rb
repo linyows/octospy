@@ -1,5 +1,5 @@
 require 'string-irc'
-require 'octospy/shortener'
+require 'octospy/url'
 
 module Octospy
   module Extensions
@@ -22,14 +22,7 @@ module Octospy
       end
 
       def shorten_url
-        case
-        when self =~ /https?:\/\/(\w+\.)?github\.com/
-          Octospy::Shortener.shorten_by_github self
-        when self =~ /https?:\/\/.+/
-          Octospy::Shortener.shorten_by_google self
-        else
-          self
-        end
+        Octospy::Url.shorten self
       end
       alias_method :shorten, :shorten_url
     end
