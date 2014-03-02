@@ -4,11 +4,9 @@ require 'simplecov'
 require 'coveralls'
 require 'octospy'
 require 'rspec'
-require 'json'
-require 'hashie'
-require 'awesome_print'
-require 'webmock/rspec'
+require 'ap'
 require 'vcr'
+require 'webmock/rspec'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
@@ -20,6 +18,13 @@ WebMock.disable_net_connect!(allow: 'coveralls.io')
 RSpec.configure { |c| c.include WebMock::API }
 
 VCR.configure do |c|
+  c.configure_rspec_metadata!
+  c.default_cassette_options = {
+    :serialize_with => :json,
+    :preserve_exact_body_bytes => true,
+    :decode_compressed_response => true,
+    :record => ENV['TRAVIS'] ? :none : :once
+  }
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
 end
@@ -71,9 +76,3 @@ def method_missing(method, *args, &block)
     super
   end
 end
-
-def support_path
-  File.expand_path('../support', __FILE__)
-end
-
-Dir["#{support_path}/**/*.rb"].each { |f| require f }
