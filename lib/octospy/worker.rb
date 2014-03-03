@@ -38,7 +38,7 @@ module Octospy
       true
     end
 
-    def events
+    def repository_events
       @repositories.each_with_object([]) do |repo, arr|
         break unless api_requestable?
         sleep Octospy.api_request_interval
@@ -51,6 +51,9 @@ module Octospy
     end
 
     def notify_recent_envets
+      events = repository_events
+      return if events.count.zero?
+
       # ascending by event.id
       events.sort_by(&:id).each { |event|
         case
