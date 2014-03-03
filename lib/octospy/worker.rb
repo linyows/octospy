@@ -17,7 +17,7 @@ module Octospy
       @thread = Thread.start do
         loop do
           begin
-            watch_repositories
+            notify_recent_envets
             sleep work_interval
           rescue => e
             @block.call "Octospy Error: #{e.message}"
@@ -50,7 +50,7 @@ module Octospy
       Time.now.utc - (60 * 30)
     end
 
-    def watch_repositories
+    def notify_recent_envets
       # ascending by event.id
       events.sort_by(&:id).each { |event|
         case
