@@ -23,13 +23,20 @@ module Octospy
       end
     end
 
+    def api_requestable?
+      if Octokit.rate_limit!.remaining.zero?
+        @block.call "ヾ(;´Д`)ﾉ #{::Octokit.rate_limit}"
+        false
+      end
+      true
+    # No rate limit for white listed users
+    rescue Octokit::NotFound
+      true
+    end
+
     def events
       @repositories.each_with_object([]) do |repo, arr|
-        if Octokit.rate_limit.remaining.zero?
-          @block.call "ヾ(;´Д`)ﾉ #{::Octokit.rate_limit}"
-          break
-        end
-
+        break unless api_requestable?
         sleep Octospy.api_request_interval
         arr.concat ::Octokit.repository_events(repo)
       end
