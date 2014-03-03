@@ -28,8 +28,9 @@ module Octospy
     end
 
     def api_requestable?
-      if Octokit.rate_limit!.remaining.zero?
-        @block.call "ヾ(;´Д`)ﾉ #{::Octokit.rate_limit}"
+      limit = Octokit.rate_limit!
+      if limit.remaining.zero?
+        @block.call "ヾ(;´Д`)ﾉ #{limit}"
         false
       end
       true
