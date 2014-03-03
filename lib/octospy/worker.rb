@@ -9,15 +9,19 @@ module Octospy
       thread_loop
     end
 
+    def work_interval
+      (Octospy.api_request_interval * @repositories.count) + Octospy.worker_interval
+    end
+
     def thread_loop
       @thread = Thread.start do
         loop do
           begin
             watch_repositories
-            sleep Octospy.worker_interval
+            sleep work_interval
           rescue => e
             @block.call "Octospy Error: #{e.message}"
-            sleep Octospy.worker_interval
+            sleep worker_interval
           end
         end
       end
