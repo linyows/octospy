@@ -20,7 +20,7 @@ module Octospy
             notify_recent_envets
             sleep work_interval
           rescue => e
-            @block.call "Octospy Error: #{e.message}"
+            notify "Octospy Error: #{e.message}"
             sleep worker_interval
           end
         end
@@ -30,7 +30,7 @@ module Octospy
     def api_requestable?
       limit = Octokit.rate_limit!
       if limit.remaining.zero?
-        @block.call "ヾ(;´Д`)ﾉ #{limit}"
+        notify "ヾ(;´Д`)ﾉ #{limit}"
         false
       end
       true
@@ -51,6 +51,10 @@ module Octospy
       Time.now.utc - (60 * 30)
     end
 
+    def notify(message)
+      @block.call message
+    end
+
     def notify_recent_envets
       events = repository_events
       return if events.count.zero?
@@ -68,7 +72,7 @@ module Octospy
         next unless parsed_event
 
         @last_event_id = event.id.to_i
-        parsed_event.each { |p| @block.call p[:message] }
+        parsed_event.each { |p| notify p[:message] }
       }
     end
   end
