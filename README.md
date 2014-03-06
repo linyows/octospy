@@ -100,6 +100,7 @@ Command                          | Description
 `join <channel>`                 | invite octospy to another channel
 `show watched`                   | display the watch list
 `show status`                    | display the joined channels
+`help`                           | display the commands
 
 Contributing
 ------------
