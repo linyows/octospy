@@ -41,17 +41,12 @@ module Octospy
     def repository_events
       @repositories.each_with_object([]) do |repo, arr|
         break unless api_requestable?
+
         sleep Octospy.api_request_interval
         arr.concat ::Octokit.repository_events(repo.to_sym)
       end
-    end
 
-    def while_ago
-      Time.now.utc - (60 * 30)
-    end
 
-    def notify(message)
-      @block.call message
     end
 
     def notify_recent_envets
@@ -76,6 +71,14 @@ module Octospy
     end
 
     private
+
+    def while_ago
+      Time.now.utc - (60 * 30)
+    end
+
+    def notify(message)
+      @block.call message
+    end
 
     def debug(name, message = nil)
       return unless Octospy.debug
