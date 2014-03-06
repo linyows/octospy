@@ -39,9 +39,10 @@ module Cinch
           ::Octospy::Recordable.add_channel m.channel.name
           method = "#{'org_' if user.type == 'Organization'}repos".to_sym
           repos = ::Octokit.send(method, owner, per_page: 100).map { |repo|
-            ::Octospy::Recordable.channel(m.channel.name).add_repo(repo.full_name)
             repo.full_name
           }
+
+          ::Octospy::Recordable.channel(m.channel.name).add_repos(repos)
 
           if repos.count > 0
             m.reply "started to watch events of #{repos.count} repositories"
@@ -65,10 +66,10 @@ module Cinch
 
         def unwatch_repositories(m, owner)
           repos = ::Octospy::Recordable.channel(m.channel.name).repos.each_with_object([]) do |repo, obj|
-            next unless repo.split('/').first == owner
-            ::Octospy::Recordable.channel(m.channel.name).remove_repo(repo)
-            opj << repo
+            obj << repo if repo.to_s.split('/').first == owner
           end
+
+          ::Octospy::Recordable.channel(m.channel.name).remove_repos(repos)
 
           if repos.count > 0
             if ::Octospy::Recordable.channel(m.channel.name).repos.count > 0
