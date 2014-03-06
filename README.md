@@ -77,6 +77,12 @@ GITHUB_WEB_ENDPOINT=http://your.enterprise.domain
 env DOTENV=".env.myserver" octospy
 ```
 
+### Debug
+
+```sh
+env DEBUG=true octospy
+```
+
 Commands
 --------
 
@@ -87,7 +93,8 @@ Command                          | Description
 `watch <repository>`             | add repository to watch list (ex: watch rails/rails)
 `unwatch <repository>`           | remove repository to watch list
 `watch <user or organization>`   | add user's repositories to watch list (ex: watch dotcloud)
-`unwatch <user or organization>` | remove user's repositories to watch list
+`unwatch <user or organization>` | remove user's repositories from watch list
+`clear watched`                  | remove all repositories from watch list
 `start`                          | start the repository event monitoring
 `stop`                           | stop the repository event monitoring
 `join <channel>`                 | invite octospy to another channel
