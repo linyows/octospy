@@ -17,6 +17,10 @@ module Octospy
       end
       alias_method :split_lfbl, :split_by_linefeed_except_blankline
 
+      def compact
+        self.gsub(/\s+/, ' ').strip
+      end
+
       def colorize_for_irc
         StringIrc.new(self)
       end
