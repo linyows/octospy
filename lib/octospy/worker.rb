@@ -43,9 +43,8 @@ module Octospy
         break unless api_requestable?
 
         sleep Octospy.api_request_interval
-        arr.concat ::Octokit.repository_events(repo.to_sym)
+        arr.concat ::Octokit.repository_events(repo.to_s)
       end
-
     end
 
     def skipping?(event)
