@@ -38,7 +38,7 @@ module Cinch
 
           ::Octospy::Recordable.add_channel m.channel.name
           method = "#{'org_' if user.type == 'Organization'}repos".to_sym
-          repos = ::Octokit.send(method, owner).map { |repo|
+          repos = ::Octokit.send(method, owner, per_page: 100).map { |repo|
             ::Octospy::Recordable.channel(m.channel.name).add_repo(repo.full_name)
             repo.full_name
           }
