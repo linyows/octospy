@@ -7,6 +7,7 @@ module Octospy
         ssl
         password
         nick
+        debug
         worker_interval
         api_request_interval
         cinch_config_block
@@ -45,6 +46,7 @@ module Octospy
       @server               = ENV['SERVER']
       @port                 = ENV['PORT']
       @ssl                  = !!ENV['SSL']
+      @debug                = !!ENV['DEBUG']
       @password             = ENV['PASSWORD']
       @worker_interval      = ENV['WORKER_INTERVAL'] ? ENV['WORKER_INTERVAL'].to_i : 30 #sec
       # you can make up to 20 requests per minute.
