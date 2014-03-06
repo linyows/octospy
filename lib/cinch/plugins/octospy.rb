@@ -8,7 +8,7 @@ module Cinch
       include Octospy::Recording
       include Octospy::Job
 
-      set :prefix, ->(m) { %r(^#{Regexp.escape "#{m.bot.nick}: "}) }
+      set :prefix, ->(m) { %r(^ ?#{Regexp.escape "#{m.bot.nick}"}:? ) }
 
       match(/hello|hi|hey/, method: :greet)
       match('ping', method: :pong)
