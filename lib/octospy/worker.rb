@@ -43,7 +43,7 @@ module Octospy
       @repositories.each_with_object([]) do |repo, arr|
         break unless api_requestable?
         sleep Octospy.api_request_interval
-        arr.concat ::Octokit.repository_events(repo)
+        arr.concat ::Octokit.repository_events(repo.to_sym)
       end
     end
 

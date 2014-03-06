@@ -12,7 +12,7 @@ module Octospy
       end
 
       def add_repo(name)
-        @repos << name if repos.empty? || !repos.include?(name)
+        repos << name.to_sym if !repos.include?(name.to_sym)
       end
 
       def add_repos(names = nil)
@@ -22,7 +22,12 @@ module Octospy
       end
 
       def remove_repo(name)
-        @repos.delete(name.to_sym) if !repos.empty? && repos.include?(name)
+        repos.delete(name.to_sym) if repos.include?(name.to_sym)
+      end
+
+      def remove_repos(names = nil)
+        return if names.nil? || names.empty?
+        repos.delete_if { |repo| names.include? repo.to_s }
       end
     end
   end
