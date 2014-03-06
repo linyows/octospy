@@ -14,14 +14,23 @@ module Octospy
     end
 
     def thread_loop
+      debug 'thread_start', <<-MSG.compact
+          api_request_interval(A): #{Octospy.api_request_interval},
+          repoisitory_count(R): #{@repositories.count},
+          worker_interval(W): #{Octospy.worker_interval},
+          work_interval(A*R+W): #{work_interval}
+        MSG
+
       @thread = Thread.start { loop { work } }
     end
 
     def work
       notify_recent_envets
+      debug 'sleep', work_interval
       sleep work_interval
     rescue => e
       error e.message
+      debug 'sleep', work_interval
       sleep worker_interval
     end
 
@@ -45,6 +54,21 @@ module Octospy
         sleep Octospy.api_request_interval
         events = ::Octokit.repository_events(repo.to_s)
         arr.concat events
+
+        debug_attrs = <<-MSG.compact
+          repo: #{repo},
+          limit: #{Octokit.rate_limit.remaining}/#{Octokit.rate_limit.limit},
+          reset: #{Octokit.rate_limit.resets_at.strftime('%H:%M:%S')} *after #{Octokit.rate_limit.resets_in}sec,
+        MSG
+
+        if !events.nil? && !events.empty?
+          debug_attrs << ' ' + <<-MSG.compact
+            first: #{events.first.type},
+            last: #{events.last.type}
+          MSG
+        end
+
+        debug 'get_event', debug_attrs
       end
     end
 
@@ -63,12 +87,28 @@ module Octospy
       events = repository_events
       return if events.count.zero?
 
+      last_event = events.sort_by(&:id).last
+      debug 'last_event', <<-MSG.compact
+          repo: #{last_event.repo.name},
+          event_type: #{last_event.type},
+          #{@last_event_id.nil? ?
+            "while_ago: #{while_ago}, created_at: #{last_event.created_at}" :
+            "last_id: #{@last_event_id}, current_id: #{last_event.id}"}
+        MSG
+
       # ascending by event.id
       events.sort_by(&:id).each { |event|
         next if skipping?(event)
 
         parsed_event = Octospy.parse(event)
-        next unless parsed_event
+
+        unless parsed_event
+          debug 'could_not_parse', <<-MSG.compact
+              repo: #{event.repo.name},
+              event: #{event.type}
+            MSG
+          next
+        end
 
         @last_event_id = event.id.to_i
         parsed_event.each { |p| notify p[:message] }
