@@ -74,5 +74,20 @@ module Octospy
         parsed_event.each { |p| notify p[:message] }
       }
     end
+
+    private
+
+    def debug(name, message = nil)
+      return unless Octospy.debug
+
+      prefix = '[DEBUG]'.colorize_for_irc.orange
+      info = name.colorize_for_irc.bold
+      @block.call "#{prefix} #{info} #{message}"
+    end
+
+    def error(message)
+      prefix = '[ERROR]'.colorize_for_irc.red
+      @block.call "#{prefix} #{message}"
+    end
   end
 end
