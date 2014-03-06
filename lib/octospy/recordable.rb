@@ -27,7 +27,8 @@ module Octospy
         if channels_include? name
           find_channel name
         else
-          Channel.new(name)
+          add_channel name
+          find_channel name
         end
       end
     end
