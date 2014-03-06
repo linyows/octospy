@@ -50,7 +50,7 @@ module Cinch
       def show_status(m)
         @bot.channels.each.with_index(1) do |channel, i|
           number = ::Octospy::Recordable.channel(channel).repos.count
-          m.reply "#{"%02d" % i} #{channel}: #{number} repo"
+          m.reply "#{"%02d" % i} #{channel}: #{number} repo#{'s' unless number.zero?}"
         end
       end
 
