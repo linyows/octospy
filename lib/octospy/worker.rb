@@ -30,8 +30,9 @@ module Octospy
       if limit.remaining.zero?
         notify "ヾ(;´Д`)ﾉ #{limit}"
         false
+      else
+        true
       end
-      true
     # No rate limit for white listed users
     rescue Octokit::NotFound
       true
