@@ -8,6 +8,7 @@ module Cinch
             match(/unwatch ([\w\-\.]+)\/([\w\-\.]+)$/, method: :unwatch_repository)
             match(/watch ([\w\-\.]+)$/, method: :watch_repositories)
             match(/unwatch ([\w\-\.]+)$/, method: :unwatch_repositories)
+            match(/clear watched( repos(itories)?)?/, method: :clear_watched_repositories)
             match(/show watched( repos(itories)?)?/, method: :show_watched_repositories)
           end
         end
@@ -80,8 +81,9 @@ module Cinch
           end
         end
 
-        def unwatch_all(m)
+        def clear_watched_repositories(m)
           ::Octospy::Recordable.remove_channel(m.channel.name)
+          m.reply 'cleared'
         end
 
         def show_watched_repositories(m)
