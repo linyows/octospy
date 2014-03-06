@@ -14,17 +14,15 @@ module Octospy
     end
 
     def thread_loop
-      @thread = Thread.start do
-        loop do
-          begin
-            notify_recent_envets
-            sleep work_interval
-          rescue => e
-            notify "Octospy Error: #{e.message}"
-            sleep worker_interval
-          end
-        end
-      end
+      @thread = Thread.start { loop { work } }
+    end
+
+    def work
+      notify_recent_envets
+      sleep work_interval
+    rescue => e
+      error e.message
+      sleep worker_interval
     end
 
     def api_requestable?
