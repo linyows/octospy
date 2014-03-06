@@ -1,4 +1,3 @@
-require 'awesome_print'
 require 'cinch'
 require 'octokit'
 require 'dotenv'
