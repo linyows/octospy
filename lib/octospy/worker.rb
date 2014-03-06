@@ -46,7 +46,17 @@ module Octospy
         arr.concat ::Octokit.repository_events(repo.to_sym)
       end
 
+    end
 
+    def skipping?(event)
+      case
+      when event.nil?,
+           @last_event_id.nil? && while_ago >= event.created_at,
+          !@last_event_id.nil? && @last_event_id >= event.id.to_i
+        true
+      else
+        false
+      end
     end
 
     def notify_recent_envets
@@ -55,12 +65,7 @@ module Octospy
 
       # ascending by event.id
       events.sort_by(&:id).each { |event|
-        case
-        when @last_event_id.nil? && while_ago >= event.created_at
-          next
-        when !@last_event_id.nil? && @last_event_id >= event.id.to_i
-          next
-        end
+        next if skipping?(event)
 
         parsed_event = Octospy.parse(event)
         next unless parsed_event
