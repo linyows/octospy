@@ -15,6 +15,12 @@ module Octospy
         @repos << name if repos.empty? || !repos.include?(name)
       end
 
+      def add_repos(names = nil)
+        return if names.nil? || names.empty?
+        repos.concat(names.map { |repo|
+          repo.to_sym unless repos.include?(repo.to_sym) }.compact)
+      end
+
       def remove_repo(name)
         @repos.delete(name.to_sym) if !repos.empty? && repos.include?(name)
       end
