@@ -16,7 +16,7 @@ module Cinch
       match(/join (.+)/, method: :join)
       match(/part(?: (.+))?/, method: :part)
       match(/show status/, method: :show_status)
-      match(/show commands/, method: :show_commands)
+      match(/show commands|help/, method: :show_commands)
 
       listen_to :invite, method: :join_on_invite
 
@@ -55,9 +55,15 @@ module Cinch
       end
 
       def show_commands(m)
-        # @matchers.each.with_index(1) do |matcher, i|
-          # m.reply "#{"%02d" % i} #{matcher}"
-        # end
+        m.reply "#{m.bot.name}:"
+        @handlers.each do |handler|
+          pattern = handler.pattern.pattern
+          command = case pattern.class.name
+            when 'Regexp' then pattern.source unless pattern.source == ''
+            when 'String' then pattern unless pattern.empty?
+            end
+          m.reply " #{command}" if command
+        end
       end
 
       def join_on_invite(m)
