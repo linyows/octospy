@@ -36,7 +36,7 @@ module Octospy
 
     def api_requestable?
       limit = Octokit.rate_limit
-      if limit.remaining.zero?
+      if !limit.limit.zero? && limit.remaining.zero?
         notify "ヾ(;´Д`)ﾉ #{limit}"
         false
       else
