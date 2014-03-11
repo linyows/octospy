@@ -8,6 +8,10 @@ module Octospy
         password
         nick
         debug
+        daemonize
+        sync_log
+        pid_file
+        log_file
         worker_interval
         api_request_interval
         cinch_config_block
@@ -47,6 +51,10 @@ module Octospy
       @port                 = ENV['PORT']
       @ssl                  = !!ENV['SSL']
       @debug                = !!ENV['DEBUG']
+      @daemonize            = !!ENV['DAEMONIZE']
+      @sync_log             = "#{ENV['SYNC_LOG'] || true}".to_boolean
+      @pid_file             = ENV['PID_FILE'] || default_pid_file
+      @log_file             = ENV['LOG_FILE'] || default_log_file
       @password             = ENV['PASSWORD']
       @worker_interval      = ENV['WORKER_INTERVAL'] ? ENV['WORKER_INTERVAL'].to_i : 30 #sec
       # you can make up to 20 requests per minute.
@@ -57,6 +65,16 @@ module Octospy
       @channels             = ENV['CHANNELS'] ? ENV['CHANNELS'].gsub(/\s|#/, '').split(',').
         map { |ch| "##{ch}" } : nil
       @cinch_config_block   = nil
+    end
+
+    private
+
+    def default_pid_file
+      File.join(File.expand_path('../../../tmp/pids', __FILE__), "#{@nick}")
+    end
+
+    def default_log_file
+      File.join(File.expand_path('../../../log', __FILE__), "#{@nick}.log")
     end
   end
 end

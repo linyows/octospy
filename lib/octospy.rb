@@ -46,7 +46,18 @@ module Octospy
       end
     end
 
+    def daemonize
+      Process.daemon(nochdir: nil, noclose: true)
+      File.open(Octospy.pid_file, 'w') { |f| f << Process.pid }
+      log = File.new(Octospy.log_file, 'a')
+      log.sync = Octospy.sync_log
+      STDIN.reopen '/dev/null'
+      STDOUT.reopen log
+      STDERR.reopen STDOUT
+    end
+
     def run
+      self.daemonize if Octospy.daemonize
       self.irc_bot.start
     end
   end
