@@ -47,7 +47,7 @@ module Octospy
     end
 
     def build(hash)
-      header = "#{hash[:nick].colorize_for_irc.bold} #{colorize_to hash[:status]}"
+      header = "#{hash[:nick].to_s.colorize_for_irc.bold} #{colorize_to hash[:status]}"
 
       if hash[:repository] && !hash[:repository].empty?
         header = "(#{hash[:repository]}) #{header}"
@@ -58,7 +58,7 @@ module Octospy
       end
 
       if hash[:link] && !hash[:link].empty?
-        header = "#{header} - #{hash[:link].shorten.colorize_for_irc.blue}"
+        header = "#{header} - #{hash[:link].shorten.to_s.colorize_for_irc.blue}"
       end
 
       body = if hash[:body].length > 20
@@ -113,7 +113,7 @@ module Octospy
     end
 
     def colorize_to(string)
-      string.colorize_for_irc.send(behavior_color string).to_s
+      string.to_s.colorize_for_irc.send(behavior_color string).to_s
     end
   end
 end

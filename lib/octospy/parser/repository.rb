@@ -20,8 +20,8 @@ module Octospy
           verbose_commit = Octokit.commit(@event.repo.name, commit.sha)
           name = "#{verbose_commit.author ? verbose_commit.author.login : commit.author.name}"
           link = "#{Octokit.web_endpoint}#{@event.repo.name}/commit/#{commit.sha}"
-          line = "#{name.colorize_for_irc.silver}: #{commit.message}"
-          line << " - #{link.shorten.colorize_for_irc.blue}"
+          line = "#{name.to_s.colorize_for_irc.silver}: #{commit.message}"
+          line << " - #{link.shorten.to_s.colorize_for_irc.blue}"
           body = body + "#{line}".split_lfbl
         end
 
