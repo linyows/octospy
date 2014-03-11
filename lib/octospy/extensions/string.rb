@@ -25,6 +25,13 @@ module Octospy
         StringIrc.new(self)
       end
 
+      def to_boolean
+        case self
+        when 'true' then true
+        when 'false' then false
+        end
+      end
+
       def shorten_url
         Octospy::Url.shorten self
       end
