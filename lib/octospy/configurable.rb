@@ -56,10 +56,10 @@ module Octospy
       @pid_file             = ENV['PID_FILE'] || default_pid_file
       @log_file             = ENV['LOG_FILE'] || default_log_file
       @password             = ENV['PASSWORD']
-      @worker_interval      = ENV['WORKER_INTERVAL'] ? ENV['WORKER_INTERVAL'].to_i : 30 #sec
       # you can make up to 20 requests per minute.
       # http://developer.github.com/v3/search/#rate-limit
-      @api_request_interval = ENV['API_REQUEST_INTERVAL'] ? ENV['API_REQUEST_INTERVAL'].to_i : 3 #sec
+      @api_request_interval = "#{ENV['API_REQUEST_INTERVAL'] || 3}".to_i
+      @worker_interval      = "#{ENV['WORKER_INTERVAL'] || 30}".to_i
       @github_login         = ENV['GITHUB_LOGIN']
       @github_token         = ENV['GITHUB_TOKEN']
       @channels             = ENV['CHANNELS'] ? ENV['CHANNELS'].gsub(/\s|#/, '').split(',').
