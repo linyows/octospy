@@ -1,7 +1,7 @@
 Octospy
 =======
 
-[![Gem Version](https://badge.fury.io/rb/octospy.png)][gem]
+[![Gem Version](https://badge.fury.io/rb/octospy.svg)][gem]
 [![Build Status](https://travis-ci.org/linyows/octospy.svg?branch=master)][travis]
 [![Dependency Status](https://gemnasium.com/linyows/octospy.png?travis)][gemnasium]
 [![Code Climate](https://codeclimate.com/github/linyows/octospy.png)][codeclimate]
